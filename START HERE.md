@@ -41,7 +41,9 @@ Endsem: all five units of every subject. See `Sem 5 Syllabus.pdf`.
 | Microprocessor | [Interfacing, Interrupts and Timing](https://claude.ai/artifact/339HwfxN5L2e8H4xzcKFtd) | On hold until the syllabus is confirmed. Built from the topics past S2 papers asked |
 | Automata | [CFG, CNF and PDA](https://claude.ai/artifact/JpJG8g2oFfPnMwCgsqF3Ar) | Endsem only. To be re-aligned to NPTEL Theory of Computation (noc26_cs114, 8 weeks) |
 
-Offline copies: the folder `Second Sessional RUN Docs` has a `.md` and a `.pdf` of each doc above except Automata, exported on 6 Nov. Pictures are in its `images` folder. The online docs are the master copies, so re-export the folder after any edit.
+Offline copies: the folder `Second Sessional RUN Docs` has a `.pdf` of each doc above except Automata, exported on 6 Nov. The `.md` versions are in its `md files` subfolder, with pictures in `md files/images`. The online docs are the master copies, so re-export the folder after any edit.
+
+GitHub: this whole folder is pushed to https://github.com/shahanxd/acads_five (branch `main`). Commit and push again after changes.
 
 Flagged paper errors: Automata S2 2025 Q3(ii) asks for a PDA for wcw, which isn't context-free (answered for wcwR). Automata S2 2024 Q3 has a variable K with no rules (it's useless, so it gets removed).
 
