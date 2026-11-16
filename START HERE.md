@@ -38,7 +38,7 @@ Endsem: all five units of every subject. See `Sem 5 Syllabus.pdf`.
 | OOP | [Unit 4, Java Classes, Inheritance and Interfaces](https://claude.ai/artifact/TCDTTMDCbectkKF9q2JmTP) | New 16 Nov. All Java PYQs from endsems 2021-25 and the Java sessional |
 | Software Engineering | [Design, Cohesion and Reliability](https://claude.ai/artifact/QvrrXNsJ2cmKS7WTU3xriB) | |
 | Software Engineering | [Software Testing](https://claude.ai/artifact/SH1gAxjm5bymoUGeqPPVTd) | |
-| Data Mining | [Classification and Clustering](https://claude.ai/artifact/TuNipQg7wpsEzph2aSSQqq) | All of syllabus Units 3 to 5, plus SVM and DBSCAN from past papers. Realigned 16 Nov to sir's slides (Unit 3 P1/P2, Unit 4 P1, Unit 5): every slide topic and worked example added, incl. new Stops 5D (weakly supervised) and 9B (cluster validity). Unit 4 P2 (kNN, regression, bagging/boosting slides) not in the folder yet |
+| Data Mining | [Classification and Clustering](https://claude.ai/artifact/TuNipQg7wpsEzph2aSSQqq) | All of syllabus Units 3 to 5, plus SVM and DBSCAN from past papers. Realigned 16 Nov to sir's slides (Unit 3 P1/P2, Unit 4 P1/P2, Unit 5): every slide topic and worked example added, incl. new Stops 5D (weakly supervised) and 9B (cluster validity), logistic regression and the SVM Lagrange example |
 | Microprocessor | [8085 Architecture and Instruction Set](https://claude.ai/artifact/4rHuM9Kjf2MAnnnhVNuw68) | New 16 Nov. Read 1st. Architecture, flags, pins, addressing modes, all instructions, SHLD/OUT timing, 8257 DMA |
 | Microprocessor | [Interfacing, Interrupts and Timing](https://claude.ai/artifact/339HwfxN5L2e8H4xzcKFtd) | Read 2nd. Timing diagrams, interrupts, RIM/SIM, I/O interfacing, 8255, delays |
 | Microprocessor | [8085 Programs](https://claude.ai/artifact/A6QaH8Pw8sJUVf5NfVu7Mv) | New 16 Nov. Read 3rd. Every program type, all tested on an 8085 simulator |
@@ -66,5 +66,5 @@ PYQs are the 2025-26 batch's papers. Automata's Sessional-2 papers from 2023 to 
 
 - Notes for every subject except Software Engineering
 - Software Testing Part 2 slides, if they exist
-- Data Mining Units 1 and 2 slides (sir's versions) and Unit 4 Part 2 are not downloaded yet
+- Data Mining Units 1 and 2 slides (sir's versions) are not downloaded yet
 - Classroom has nothing for OOP theory, Microprocessor theory or Automata, and no Computer Networks notes

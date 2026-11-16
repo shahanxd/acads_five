@@ -12,7 +12,7 @@ Read the idea, try the PYQ in its box, then check the solution right under it. T
 
 **What the paper likes:** an entropy and information gain table, a Naive Bayes prediction, a k-means run shown round by round, and a single-link dendrogram. All four are pure arithmetic once you know the recipe, and arithmetic can't surprise you.
 
-**Videos:** StatQuest on YouTube, for Decision Trees, Naive Bayes, Support Vector Machines, K-means and Hierarchical Clustering. Notes are in `Data Mining/Notes/`. Sir's own slides for Units 3, 4 and 5 by Mr. Hannan Mansoor (the files Unit 3 IDM P1 and P2, Unit 4 IDM P1 and Unit 5 IDM) are now in that folder. On 16 Nov this run was realigned to them: every slide topic is covered, and every worked example on the slides is solved here too, checked by script. Sections added from the slides are written for a first read.
+**Videos:** StatQuest on YouTube, for Decision Trees, Naive Bayes, Support Vector Machines, K-means and Hierarchical Clustering. Notes are in `Data Mining/Notes/`. Sir's own slides for Units 3, 4 and 5 by Mr. Hannan Mansoor (the files Unit 3 IDM P1 and P2, Unit 4 IDM P1 and P2, and Unit 5 IDM) are now in that folder. On 16 Nov this run was realigned to them: every slide topic is covered, and every worked example on the slides is solved here too, checked by script. Sections added from the slides are written for a first read.
 
 **Papers used:** CSE-501 Sessional-2 2025 and Endsem 2025, the Data Analytics Honours Sessional-2 2025 (the same clustering syllabus), and the CSDS Sessional-2 2026 paper from this year.
 
@@ -770,6 +770,50 @@ An SVM draws the boundary that keeps the **widest possible gap** between the two
 - **Soft margin** allows a few points on the wrong side, with a penalty C, for noisy data.
 - **Kernel trick:** when the data isn't linearly separable, map it to a higher dimension where it is, using a kernel such as polynomial, RBF (Gaussian) or sigmoid, without computing the mapping explicitly.
 
+**From the Unit 4 Part 2 slides: how the SVM is actually learned.** Many hyperplanes separate the data; the slides call two of them B1 and B2. Each has two parallel **margin boundaries** passing through the closest points of each class (b₁₁, b₁₂ for B1). "Better" means a **wider margin**, so B1 beats B2. With the boundaries scaled to w · x + b = ±1, the classifier is:
+
+```latex
+f(\mathbf{x}) = \begin{cases} +1 & \text{if } \mathbf{w} \cdot \mathbf{x} + b \ge 1 \\ -1 & \text{if } \mathbf{w} \cdot \mathbf{x} + b \le -1 \end{cases}, \qquad \text{Margin} = \frac{2}{\lVert \mathbf{w} \rVert}
+```
+
+Maximising 2/‖w‖ is the same as minimising L(w) = ‖w‖²/2, subject to yᵢ(w · xᵢ + b) ≥ 1 for every training tuple i = 1 … N. That's a **constrained optimisation problem**, solved with the **Lagrange multiplier** method. Each training tuple gets a multiplier λᵢ. It comes out **non-zero only for the support vectors**, and then:
+
+```latex
+\mathbf{w} = \sum_i \lambda_i\, y_i\, \mathbf{x}_i
+```
+
+> **The slides' worked example (from Tan et al.).** Eight 2-D training points. The optimiser gives λ = 65.5261 for (0.3858, 0.4687) with y = +1 and for (0.4871, 0.6110) with y = −1, and λ = 0 for the other six. Find w, b and the margin, and classify (0.2, 0.1) and (0.8, 0.6).
+
+**Answer:** Only the two support vectors count.
+
+```latex
+\begin{aligned}
+\mathbf{w} &= 65.5261 \times \big[(0.3858, 0.4687) - (0.4871, 0.6110)\big] = 65.5261 \times (-0.1013, -0.1423) = (-6.64, -9.32) \\
+b &= 1 - \mathbf{w} \cdot (0.3858, 0.4687) = 1 - (-6.93) = 7.93 \\
+\text{Margin} &= \frac{2}{\sqrt{6.64^2 + 9.32^2}} = 0.175
+\end{aligned}
+```
+
+(Using the −1 support vector instead gives b = 7.93 as well., a good check.)
+
+```latex
+\begin{aligned}
+f(0.2, 0.1) &= -6.64(0.2) - 9.32(0.1) + 7.93 = 5.67 \ge 1 \Rightarrow +1 \\
+f(0.8, 0.6) &= -6.64(0.8) - 9.32(0.6) + 7.93 = -2.97 \le -1 \Rightarrow -1
+\end{aligned}
+```
+
+**w = (−6.64, −9.32), b = 7.93. (0.2, 0.1) is class +1 and (0.8, 0.6) is class −1.** Delete any of the six λ = 0 points and the boundary doesn't move: the decision boundary depends **only on the support vectors**.
+
+**Characteristics of SVM** (the slides' list, good for a "discuss" question):
+
+- Learning is a **convex optimisation** problem, so efficient algorithms find the **global** minimum. Many other methods (like decision trees) are greedy and only reach a local optimum.
+- Building the model has **high computational complexity**.
+- It's **robust to noise**, and **overfitting is handled** by maximising the margin.
+- It handles **irrelevant and redundant attributes** better than many other techniques.
+- The user must choose the **kernel function** and the **cost function** (the C penalty).
+- It's **difficult to handle missing values**.
+
 > **PYQ, Endsem 2025 Q4(c), 4.5 marks.** Explain linear SVM. Discuss the advantages and disadvantages of SVM.
 
 **Answer:** A linear SVM separates two classes with the hyperplane w · x + b = 0 that maximises the margin 2 / ‖w‖ between the nearest points of each class, the support vectors. A new point is classified by the sign of w · x + b.
@@ -839,6 +883,73 @@ The formulas for w and b come from setting the derivatives of the MSE with respe
 ```
 
 For the CSDS data above, MAE = 5/5 = 1 and RMSE = 1 too, because every error is exactly ±1.
+
+**From the Unit 4 Part 2 slides: the regression model in full.** Regression maps independent attributes to a **continuous** value, such as {living area} → house price, or {college, major, GPA} → future income. With n objects, each with p attributes xᵢ = (xᵢ₁, …, xᵢₚ), the model is yᵢ = wᵀxᵢ + b. Here w is the **weight vector** (one weight per attribute) and b is the **bias** (the intercept); both are learned from the data.
+
+The **least squares method** picks w and b to minimise the total squared error (the loss function), and for one attribute there's a **closed-form** answer:
+
+```latex
+\begin{aligned}
+L(w, b) &= \sum_{i=1}^{n} (y_i - w x_i - b)^2 \\
+w &= \frac{\sum x_i (y_i - \bar{y})}{\sum x_i^2 - n\bar{x}^2}, \qquad b = \frac{1}{n}\sum (y_i - w x_i) = \bar{y} - w\bar{x}
+\end{aligned}
+```
+
+This is the same as the formula at the top of this stop, just written differently.
+
+> **Practice.** Fit a line to x = 1, 2, 3, 4, 5 and y = 2, 4, 5, 4, 5. Predict y at x = 6, and find the MSE of the fit.
+
+**Answer:** x̄ = 3 and ȳ = 4.
+
+```latex
+\begin{aligned}
+w &= \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} = \frac{(-2)(-2) + (-1)(0) + 0 + (1)(0) + (2)(1)}{4 + 1 + 0 + 1 + 4} = \frac{6}{10} = 0.6 \\
+b &= 4 - 0.6 \times 3 = 2.2 \\
+\hat{y}(6) &= 0.6 \times 6 + 2.2 = 5.8
+\end{aligned}
+```
+
+The predictions are 2.8, 3.4, 4.0, 4.6, 5.2, so the errors are −0.8, 0.6, 1.0, −0.6, −0.2:
+
+```latex
+\text{MSE} = \frac{0.64 + 0.36 + 1.00 + 0.36 + 0.04}{5} = \frac{2.4}{5} = 0.48
+```
+
+**ŷ = 0.6x + 2.2, predicting 5.8 at x = 6, with MSE 0.48.**
+
+**Logistic regression: using regression to classify.** Linear regression outputs any real number, but a class needs a **probability** between 0 and 1. The fix is to squash wᵀx + b through the **sigmoid** function:
+
+```latex
+\sigma(z) = \frac{1}{1 + e^{-z}} = \frac{e^z}{e^z + 1}, \qquad P(Y = 1 \mid X = x; \mathbf{w}) = \sigma\Big(w_0 + \sum_{i=1}^{n} w_i x_i\Big)
+```
+
+- The sigmoid maps (−∞, +∞) onto (0, 1), and it's smooth (differentiable), which training needs.
+- It changes **sharply around z = 0**: σ(0) = 0.5, σ(2) = 0.88, and σ(−2) = 0.12.
+- Neural networks and deep learning use it too.
+- Inverting it gives the **log-odds**: ln(y / (1 − y)) = wᵀx + b. So logistic regression is linear in the log-odds.
+
+The slides' example predicts tenure from years of service alone. With weights such as w₀ = −6 and w₁ = 1, someone at 6 years gets σ(0) = 0.5, the boundary. At 8 years it's σ(2) = 0.88, so tenured; at 4 years it's σ(−2) = 0.12, so not.
+
+**Training: maximum likelihood.** For tuple i with label yᵢ ∈ {0, 1}, let pᵢ = P(yᵢ = 1). The model gives the observed label probability pᵢ^yᵢ (1 − pᵢ)^(1 − yᵢ): that's pᵢ if yᵢ = 1 and 1 − pᵢ if yᵢ = 0. Choose w to make the whole training set most likely:
+
+```latex
+\begin{aligned}
+L(\mathbf{w}) &= \prod_i p_i^{\,y_i} (1 - p_i)^{1 - y_i} \\
+l(\mathbf{w}) = \log L &= \sum_{i=1}^{N} \Big[ y_i\, \mathbf{x}_i^T \mathbf{w} - \log\big(1 + e^{\mathbf{w}^T \mathbf{x}_i}\big) \Big]
+\end{aligned}
+```
+
+Unlike linear regression, there's **no closed-form solution**, so it's solved iteratively by gradient ascent.
+
+**Gradient descent** is an iterative algorithm for finding the **minimum** of a function. At any point the function decreases fastest in the direction of the **negative gradient** (the slope), so take a small step that way, with the **step size** (learning rate) η controlling how far, and repeat. When the gradient becomes zero you've reached a (local) minimum. To **maximise** the log likelihood you climb instead: that's **gradient ascent**. For logistic regression each weight moves by:
+
+```latex
+w_i \leftarrow w_i + \eta \sum_{l} \big(y_l - P(Y = 1 \mid \mathbf{x}_l; \mathbf{w})\big)\, x_{l,i}
+```
+
+The update is error × input: if the model under-predicts a positive tuple, its weights grow; if it over-predicts, they shrink.
+
+**Linear regression = least squares with a closed form. Logistic regression = sigmoid of a linear score, trained by maximum likelihood with gradient ascent (no closed form).**
 
 ## Stop 5B: Evaluating classifiers
 
@@ -983,6 +1094,58 @@ In AdaBoost, a model's vote weight is log((1 − error) / error), so a model wit
 The 3 nearest are (3, 4) Good, (1, 4) Good and (7, 7) Bad.
 
 **Majority 2 to 1, so (3, 7) is classified Good.**
+
+**From the Unit 4 Part 2 slides: lazy learners in depth.** A lazy learner stores the training data (with at most minor processing) and waits for a test tuple. It spends less time training but more time predicting. On accuracy, a lazy method effectively uses a **richer hypothesis space**: it forms many local approximations that together make up an implicit global one. An eager method must commit to a single hypothesis covering the whole instance space.
+
+**Instance-based methods** store the training examples and delay processing ("lazy evaluation"). The slides name three:
+
+- **k-nearest neighbour**, where instances are points in Euclidean space;
+- **locally weighted regression**, which builds a local approximation around each query;
+- **case-based reasoning**, which uses symbolic descriptions and knowledge-based inference (below).
+
+**The kNN idea in one line:** "if it walks like a duck and quacks like a duck, it's probably a duck." A nearest-neighbour classifier needs four things:
+
+1. a set of labelled records;
+2. a proximity metric, such as Euclidean distance;
+3. the value of k;
+4. a way to turn the k neighbours' labels into one label, such as a majority vote.
+
+**Distance-weighted voting.** Instead of one neighbour, one vote, closer neighbours count more, with weight w = 1/d². In the practice above, the three nearest neighbours of (3, 7) had squared distances 9 (Good), 13 (Good) and 16 (Bad):
+
+```latex
+\text{Good} = \tfrac{1}{9} + \tfrac{1}{13} = 0.188, \qquad \text{Bad} = \tfrac{1}{16} = 0.063 \;\Rightarrow\; \text{Good}
+```
+
+**The choice of proximity measure matters.** For documents, **cosine** similarity beats Euclidean distance or correlation. The slides' binary word vectors show why:
+
+| Pair | Euclidean distance | Cosine similarity |
+| --- | --- | --- |
+| 1111 1111 1110 vs 0111 1111 1111 (10 shared words) | 1.414 | 10/11 = 0.909 |
+| 0000 0000 0001 vs 1000 0000 0000 (nothing shared) | 1.414 | 0 |
+
+Euclidean distance calls both pairs equally far apart. Cosine correctly says the first pair is nearly identical and the second has nothing in common.
+
+**Scale the attributes first**, or one attribute dominates the distance. A person's height varies over 1.5 to 1.8 m, weight over 90 to 300 lb, and income over $10K to $1M; unscaled, income alone would decide every neighbour. Use min-max normalisation, v′ = (v − min) / (max − min), so a weight of 150 lb becomes (150 − 90) / 210 = 0.29. For time series, z-scores are standard: mean 0, standard deviation 1.
+
+**Choosing k:**
+
+- **too small**, and it's sensitive to noise points;
+- **too large**, and the neighbourhood swallows points from other classes.
+
+**Decision boundaries.** For 1-NN, the boundary is a **Voronoi diagram**: each training point owns the region of space closer to it than to any other point. Nearest-neighbour classifiers are **local** classifiers, so their boundaries can take **arbitrary shapes**.
+
+**Practical problems:**
+
+- **Missing values:** proximity needs all attributes. Using only the attributes both tuples have means each pair is measured differently, so the proximities stop being comparable.
+- **Irrelevant attributes** add noise to the distance. **Redundant** ones bias it towards whatever they duplicate. **Interacting** attributes, which matter only in combination, can hide the real pattern from a plain distance.
+- **Efficiency:** don't compute the distance to every training object. Use multidimensional index structures (**k-d trees**) or fast approximate search (**locality-sensitive hashing, LSH**). **Condensing** finds a smaller set of objects that performs the same, and **editing** removes objects to improve efficiency.
+
+**Case-based reasoning (CBR)** solves new problems from a database of past problem solutions. It stores **symbolic** descriptions (cases), not points in Euclidean space. It's used in customer service (diagnosing product problems) and legal rulings.
+
+- **Method:** represent cases richly (even as graphs), search for similar cases, and combine several retrieved cases if needed. Case retrieval, knowledge-based reasoning and problem solving are tightly coupled.
+- **Challenges:** finding a good similarity metric, and indexing by syntactic similarity, backtracking and adapting to other cases when that fails.
+
+**kNN = store everything; classify by the k closest (optionally weighted 1/d²) after scaling; pick k carefully; speed up with k-d trees or LSH. CBR is the symbolic cousin.**
 
 ## Stop 5D: Weakly supervised learning
 
