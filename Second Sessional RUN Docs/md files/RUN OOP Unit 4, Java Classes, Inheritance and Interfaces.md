@@ -24,7 +24,7 @@ Papers used: endsems 2021, 2022, 2023 and 2025, plus the Java sessional saved as
 
 **Videos:** Kunal Kushwaha's [Java + DSA playlist](https://www.youtube.com/playlist?list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ) has six OOP videos. For this unit watch OOP 1 (classes, objects, constructors), OOP 2 (packages, static), OOP 3 (inheritance, polymorphism) and OOP 5 (abstract classes, interfaces). The slides are in `OOP/Notes/Unit 4 slides.pdf`.
 
-**About the code:** every program here is complete and runs as written. This laptop only has a Java runtime and no compiler, so the outputs were traced line by line by hand rather than run.
+**About the code:** every program here is complete and runs as written. Every program was compiled and run with JDK 21, and every output shown is the real one. The "won't compile" claims in the PYQ answers were checked against the compiler's actual errors.
 
 ## Stop 1: Java for someone coming from C++
 
@@ -692,6 +692,8 @@ public Car(int d, int w) {
     numOfDoors = d;
 }
 ```
+
+A bonus line for the curious: Java 25 added "flexible constructor bodies", which allow a field assignment like `numOfDoors = d;` before `super(w)`, so the original Car would compile there. Exams assume classic Java (8 to 21), where `super(...)` must come first, so answer as above.
 
 **(ii) Neither line compiles, so there's no output.**
 
