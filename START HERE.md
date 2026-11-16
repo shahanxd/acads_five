@@ -36,6 +36,8 @@ Endsem: all five units of every subject. See `Sem 5 Syllabus.pdf`.
 | OOP | [Unit 2, Polymorphism and Overloading](https://claude.ai/artifact/9tiKDufoQCe7undHRwsod2) | |
 | OOP | [Unit 3, Inheritance and Virtual Functions](https://claude.ai/artifact/2nqDm8Qy1SWbxxw9nLucaf) | |
 | OOP | [Unit 4, Java Classes, Inheritance and Interfaces](https://claude.ai/artifact/TCDTTMDCbectkKF9q2JmTP) | New 16 Nov. All Java PYQs from endsems 2021-25 and the Java sessional |
+| OOP | [30 min: Unit 3, Inheritance and Virtual Functions](https://claude.ai/artifact/TN8ZqrnP3ZRJ3d8tQtN6Sr) | New 16 Nov. 30-minute version of Unit 3: repeat programs cut to short notes. Adds Makeup 2022's bank and overloading vs overriding questions |
+| OOP | [30 min: Unit 4, Java Classes, Inheritance and Interfaces](https://claude.ai/artifact/16SFmz5yYbDnBTnf8G34Na) | New 16 Nov. 30-minute version of Unit 4. Adds the Java questions from Sessional-2 2024 and 2025, which the full doc missed |
 | Software Engineering | [Design, Cohesion and Reliability](https://claude.ai/artifact/QvrrXNsJ2cmKS7WTU3xriB) | |
 | Software Engineering | [Software Testing](https://claude.ai/artifact/SH1gAxjm5bymoUGeqPPVTd) | |
 | Data Mining | [Classification and Clustering](https://claude.ai/artifact/TuNipQg7wpsEzph2aSSQqq) | All of syllabus Units 3 to 5, plus SVM and DBSCAN from past papers. Realigned 16 Nov to sir's slides (Unit 3 P1/P2, Unit 4 P1/P2, Unit 5): every slide topic and worked example added, incl. new Stops 5D (weakly supervised) and 9B (cluster validity), logistic regression and the SVM Lagrange example |
