@@ -1,6 +1,6 @@
 # Sem 5 tracker
 
-Last updated: 2026-11-16
+Last updated: 2026-11-17
 
 ## Deadlines
 
@@ -41,15 +41,13 @@ Endsem: all five units of every subject. See `Sem 5 Syllabus.pdf`.
 | Software Engineering | [Design, Cohesion and Reliability](https://claude.ai/artifact/QvrrXNsJ2cmKS7WTU3xriB) | |
 | Software Engineering | [Software Testing](https://claude.ai/artifact/SH1gAxjm5bymoUGeqPPVTd) | |
 | Data Mining | [Classification and Clustering](https://claude.ai/artifact/TuNipQg7wpsEzph2aSSQqq) | All of syllabus Units 3 to 5, plus SVM and DBSCAN from past papers. Realigned 16 Nov to sir's slides (Unit 3 P1/P2, Unit 4 P1/P2, Unit 5): every slide topic and worked example added, incl. new Stops 5D (weakly supervised) and 9B (cluster validity), logistic regression and the SVM Lagrange example |
-| Microprocessor | [8085 Architecture and Instruction Set](https://claude.ai/artifact/4rHuM9Kjf2MAnnnhVNuw68) | New 16 Nov. Read 1st. Architecture, flags, pins, addressing modes, all instructions, SHLD/OUT timing, 8257 DMA |
-| Microprocessor | [Interfacing, Interrupts and Timing](https://claude.ai/artifact/339HwfxN5L2e8H4xzcKFtd) | Read 2nd. Timing diagrams, interrupts, RIM/SIM, I/O interfacing, 8255, delays |
-| Microprocessor | [8085 Programs](https://claude.ai/artifact/A6QaH8Pw8sJUVf5NfVu7Mv) | New 16 Nov. Read 3rd. Every program type, all tested on an 8085 simulator |
-| Microprocessor | [8086 Theory](https://claude.ai/artifact/4KT5ALvKQrEwuKymEhtmfj) | New 16 Nov. Read 4th. Theory only, as confirmed |
+| Microprocessor | [8085 (short)](https://claude.ai/artifact/998Sn2bHCbmNvMvCypQ9nA) | New 17 Nov. Read 1st. About 60% of the old 8085 Architecture doc: architecture, flags, pins, addressing modes, instructions, the program-reading PYQs, SHLD/OUT timing, 8257 DMA |
+| Microprocessor | [8086 Theory (short)](https://claude.ai/artifact/A7DThLKNjtgfDqBffVWMCA) | New 17 Nov. Read 2nd. About 60% of the old 8086 doc, theory only, as confirmed |
 | Automata | [CFG, CNF and PDA](https://claude.ai/artifact/JpJG8g2oFfPnMwCgsqF3Ar) | Endsem only. To be re-aligned to NPTEL Theory of Computation (noc26_cs114, 8 weeks) |
 
 Docs made from 16 Nov on are written to explain from zero: every term is defined where it first appears, with the same coverage and PYQs.
 
-Offline copies: the folder `Second Sessional RUN Docs` has a `.pdf` of each doc above except Automata (the first nine exported on 6 Nov, the four new ones on 16 Nov). The `.md` versions are in its `md files` subfolder, with pictures in `md files/images`. The online docs are the master copies, so re-export the folder after any edit.
+Offline copies: the folder `Second Sessional RUN Docs` has a `.pdf` of each doc above except Automata. On 17 Nov the Microprocessor Interfacing and 8085 Programs files were removed from it, and the two long Microprocessor docs were replaced by the short ones (the old online docs still exist, and the old files are in git history). The `.md` versions are in its `md files` subfolder, with pictures in `md files/images`. The online docs are the master copies, so re-export the folder after any edit.
 
 GitHub: this whole folder is pushed to https://github.com/shahanxd/acads_five (branch `main`). Commit and push again after changes.
 
