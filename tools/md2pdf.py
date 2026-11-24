@@ -67,7 +67,12 @@ def render(md_path):
         parts[i] = re.sub(r'(?<![\\$\w])\$(?! )([^$\n]+?)(?<! )\$(?!\w)', lambda m: stash(m.group(1), False), parts[i])
     text = ''.join(parts)
     body = markdown.markdown(text, extensions=['tables', 'fenced_code', 'sane_lists', 'attr_list', 'nl2br'])
-    body = re.sub(r'<pre>.*?</pre>', lambda m: m.group(0).replace('<br />', ''), body, flags=re.S)
+    def fix_pre(m):
+        block = m.group(0).replace('<br />', '')
+        if block.count(chr(10)) <= 30:                 # short blocks: keep on one page
+            block = block.replace('<pre>', '<pre style="page-break-inside: avoid">', 1)
+        return block
+    body = re.sub(r'<pre>.*?</pre>', fix_pre, body, flags=re.S)
     errs = []
     if maths:
         with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False, encoding='utf-8') as f:
