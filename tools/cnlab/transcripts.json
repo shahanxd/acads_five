@@ -1,0 +1,36 @@
+{
+ "1": {
+  "run1": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter the message: Computer Networks Lab\nEnter the key (shift): 3\nEncrypted text: Frpsxwhu Qhwzrunv Ode\nDecrypted text: Computer Networks Lab\n",
+  "run2": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter the message: Meet me at JMI gate 7\nEnter the key (shift): 11\nEncrypted text: Xppe xp le UXT rlep 7\nDecrypted text: Meet me at JMI gate 7\n"
+ },
+ "2": {
+  "run1": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter the message: WEAREDISCOVEREDFLEEATONCE\nEnter number of rails: 3\n  rail 1 : WECRLTE\n  rail 2 : ERDSOEEFEAOC\n  rail 3 : AIVDEN\nEncrypted text: WECRLTEERDSOEEFEAOCAIVDEN\nDecrypted text: WEAREDISCOVEREDFLEEATONCE\n",
+  "run2": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter the message: networks lab\nEnter number of rails: 2\n  rail 1 : ntok a\n  rail 2 : ewrslb\nEncrypted text: ntok aewrslb\nDecrypted text: networks lab\n"
+ },
+ "3": {
+  "run1": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter the message: WEAREDISCOVEREDFLEEATONCE\nEnter the key: ZEBRAS\n\n  Z  E  B  R  A  S\n  W  E  A  R  E  D\n  I  S  C  O  V  E\n  R  E  D  F  L  E\n  E  A  T  O  N  C\n  E  _  _  _  _  _\n\nEncrypted text: EVLN_ACDT_ESEA_ROFO_DEEC_WIREE\nDecrypted text: WEAREDISCOVEREDFLEEATONCE\n"
+ },
+ "4": {
+  "run1": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter IP address with prefix (or q to quit): 205.16.37.39/28\nGiven address  : 11001101.00010000.00100101.00100111\nMask (/28)     : 11111111.11111111.11111111.11110000 = 255.255.255.240\nFirst address  : 205.16.37.32\nLast address   : 205.16.37.47\nTotal addresses: 16\n\nEnter IP address with prefix (or q to quit): 192.168.10.77/24\nGiven address  : 11000000.10101000.00001010.01001101\nMask (/24)     : 11111111.11111111.11111111.00000000 = 255.255.255.0\nFirst address  : 192.168.10.0\nLast address   : 192.168.10.255\nTotal addresses: 256\n\nEnter IP address with prefix (or q to quit): 172.16.45.130/20\nGiven address  : 10101100.00010000.00101101.10000010\nMask (/20)     : 11111111.11111111.11110000.00000000 = 255.255.240.0\nFirst address  : 172.16.32.0\nLast address   : 172.16.47.255\nTotal addresses: 4096\n\nEnter IP address with prefix (or q to quit): q\n"
+ },
+ "5": {
+  "server": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nServer process started, waiting on port 5000\nConnected to process at ('127.0.0.1', 57892)\nClient: hello, this is the client process\nServer: hi client, server process here\nClient: sending some data: 1011 0110\nServer: got it, 8 bits received\nClient: ok thanks\nServer: bye\nConnection closed\n",
+  "client": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nConnected to server process on port 5000\nClient: hello, this is the client process\nServer: hi client, server process here\nClient: sending some data: 1011 0110\nServer: got it, 8 bits received\nClient: ok thanks\nServer: bye\nConnection closed\n"
+ },
+ "6": {
+  "server": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nServer listening on port 5001\n[client 1] connected from ('127.0.0.1', 57893), active clients: 1\n[client 2] connected from ('127.0.0.1', 57894), active clients: 2\n[client 3] connected from ('127.0.0.1', 57895), active clients: 3\n[client 1] says: hello from client one\n[client 2] says: client two here\n[client 3] says: is the server busy?\n[client 1] says: what time is the lab\n[client 3] says: ok bye\n[client 3] disconnected\n[client 2] disconnected\n[client 1] disconnected\n",
+  "client1": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nConnected to server, type bye to exit\nYou: hello from client one\nServer: server got your message 'hello from client one' (21 chars)\nYou: what time is the lab\nServer: server got your message 'what time is the lab' (20 chars)\nYou: bye\nDisconnected\n",
+  "client2": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nConnected to server, type bye to exit\nYou: client two here\nServer: server got your message 'client two here' (15 chars)\nYou: bye\nDisconnected\n",
+  "client3": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nConnected to server, type bye to exit\nYou: is the server busy?\nServer: server got your message 'is the server busy?' (19 chars)\nYou: ok bye\nServer: server got your message 'ok bye' (6 chars)\nYou: bye\nDisconnected\n"
+ },
+ "7": {
+  "server": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nRelay server running on port 5002\nconnection from ('127.0.0.1', 57896)\nshahan joined (1 online)\nconnection from ('127.0.0.1', 57897)\nrahul joined (2 online)\nforwarding shahan -> others : hey rahul, you there?\nforwarding rahul -> others : yes, got your message\nforwarding shahan -> others : did you finish the CN lab file\nforwarding rahul -> others : almost, only exp 8 left\nforwarding shahan -> others : cool, see you tomorrow\nrahul left\nshahan left\n",
+  "clientA": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter your name: shahan\nConnected. Start typing (bye to leave)\n* rahul joined the chat\nhey rahul, you there?\nrahul: yes, got your message\ndid you finish the CN lab file\nrahul: almost, only exp 8 left\ncool, see you tomorrow\n* rahul left the chat\nbye\n",
+  "clientB": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter your name: rahul\nConnected. Start typing (bye to leave)\nshahan: hey rahul, you there?\nyes, got your message\nshahan: did you finish the CN lab file\nalmost, only exp 8 left\nshahan: cool, see you tomorrow\nbye\n"
+ },
+ "8": {
+  "server": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nSecure relay server running on port 5003\nconnection from ('127.0.0.1', 57898)\nshahan joined (1 online)\nconnection from ('127.0.0.1', 57899)\nrahul joined (2 online)\nrelaying from shahan (encrypted): Khoor Udkxo\nrelaying from rahul (encrypted): Kl Vkdkdq, phvvdjh uhfhlyhg\nrelaying from shahan (encrypted): phhw dw ode 4 dw 10\nrelaying from rahul (encrypted): rn grqh\nrahul left\nshahan left\n",
+  "clientA": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter your name: shahan\nConnected, shared key = 3 (bye to leave)\nHello Rahul\n  sent (encrypted): Khoor Udkxo\n  received from rahul (encrypted): Kl Vkdkdq, phvvdjh uhfhlyhg\n  decrypted: Hi Shahan, message received\nmeet at lab 4 at 10\n  sent (encrypted): phhw dw ode 4 dw 10\n  received from rahul (encrypted): rn grqh\n  decrypted: ok done\nbye\n",
+  "clientB": "Mohd Shahan Shah Ayyubi\n24BCS064\n\nEnter your name: rahul\nConnected, shared key = 3 (bye to leave)\n  received from shahan (encrypted): Khoor Udkxo\n  decrypted: Hello Rahul\nHi Shahan, message received\n  sent (encrypted): Kl Vkdkdq, phvvdjh uhfhlyhg\n  received from shahan (encrypted): phhw dw ode 4 dw 10\n  decrypted: meet at lab 4 at 10\nok done\n  sent (encrypted): rn grqh\nbye\n"
+ }
+}

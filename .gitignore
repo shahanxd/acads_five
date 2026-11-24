@@ -3,3 +3,9 @@ tools/package-lock.json
 *.render.html
 jdk/
 jdk.zip
+tools/cnlab/*.png
+tools/cnlab/*.pdf
+tools/cnlab/*.html
+tools/cnlab/render_cache.npz
+tools/cnlab/shots/
+tools/cnlab/__pycache__/
