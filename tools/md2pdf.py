@@ -35,6 +35,8 @@ th { background: #f4f1ea; font-weight: 600; }
 img { max-width: 100%; max-height: 200mm; display: block; margin: 8px auto 2px; page-break-inside: avoid; }
 .math { margin: 8px 0; padding: 2px 0; overflow-x: hidden; page-break-inside: avoid; }
 .katex-display { margin: 0; }
+.katex-display, .katex-display > .katex, .math { overflow: visible !important; }
+::-webkit-scrollbar { display: none; }
 .katex { font-size: 1.07em; }
 ul, ol { margin: 4px 0; padding-left: 22px; }
 li { margin: 2px 0; }
