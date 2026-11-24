@@ -198,16 +198,14 @@ for i, (title, aim, theory, files) in enumerate(EXPS, 1):
 body = f'<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>{"".join(pages)}</body></html>'
 pdf_from_html(body, HERE / 'body.pdf')
 
-for theme in ('dark', 'light'):
+for theme in ('light',):
     chtml, ccss = cover(theme)
     pdf_from_html(f'<!doctype html><html><head><meta charset="utf-8"><style>@page {{ size: A4; margin: 0; }} '
                   f'body {{ margin: 0; }} {ccss}</style></head><body>{chtml}</body></html>', HERE / f'cover_{theme}.pdf')
 
 out = fitz.open()
-out.insert_pdf(fitz.open(HERE / 'cover_dark.pdf'))
+out.insert_pdf(fitz.open(HERE / 'cover_light.pdf'))
 out.insert_pdf(fitz.open(HERE / 'body.pdf'))
 final = LAB / 'CN Lab File - 24BCS064.pdf'
 out.save(final, garbage=3, deflate=True)
-alt = fitz.open(HERE / 'cover_light.pdf')
-alt.save(LAB / 'CN Lab File - light cover (printer friendly).pdf', garbage=3, deflate=True)
 print('pages', out.page_count, '->', final)

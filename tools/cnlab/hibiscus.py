@@ -259,6 +259,29 @@ def cached_render():
     return img, kind, ang
 
 
+def paper_colour(k, q, c):
+    """Strong, print-safe colours for a white page, chosen by part and tone."""
+    q = float(np.clip(q, 0, 1))
+    lerp = lambda a, b: tuple(a[n] + (b[n] - a[n]) * q for n in range(3))
+    if k in (PETAL, BUD):
+        return lerp((128, 0, 30), (226, 18, 52))
+    if k == LEAF:
+        return lerp((14, 78, 36), (58, 146, 58))
+    if k in (VEIN, RIM):
+        return (118, 0, 28)
+    if k in (LVEIN, STEM):
+        return (30, 105, 45)
+    if k == EYE:
+        return (100, 0, 30)
+    if k == COLUMN:
+        return (205, 95, 105)
+    if k == POLLEN:
+        return (226, 150, 0)
+    if k == STIGMA:
+        return (160, 0, 48)
+    return tuple(c)
+
+
 def to_art(cols=200, rows=100, seed=3, dark=False):
     img, kind, ang = cached_render()
     rng = np.random.default_rng(seed)
@@ -285,8 +308,8 @@ def to_art(cols=200, rows=100, seed=3, dark=False):
             q = tone[k](lum) + rng.normal(0, 0.06)
             if dark:   # on a dark page dense glyphs read bright
                 g = ':' if q < 0.12 else '1' if q < 0.45 else '0' if q < 0.88 else '8'
-            else:
-                g = '8' if q < 0.1 else '0' if q < 0.5 else '1' if q < 0.9 else ':'
+            else:      # on white, keep every cell inked: heavier glyphs in shadow, lighter in highlights
+                g = '8' if q < 0.22 else '0' if q < 0.68 else '1'
         elif k in (VEIN, SEAM, RIM, LVEIN, STEM, COLUMN):
             g = dirchar(a)
         elif k == EYE:
@@ -295,6 +318,8 @@ def to_art(cols=200, rows=100, seed=3, dark=False):
             g = '*' if h < 0.6 else ('o' if h < 0.85 else '@')
         else:  # STIGMA
             g = '@' if h < 0.6 else 'O'
+        if not dark and k != BG:
+            c = paper_colour(k, tone[k](lum) if k in tone else 0.5, c)
         grid[j][i] = (g, tuple(int(v) for v in c))
     return grid
 

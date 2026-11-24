@@ -34,7 +34,7 @@ Each subject folder has an **`Endsem RUN`** folder with:
 ## Labs
 
 - Software Engineering: `Software Engineering/Lab/SE Lab File - 24BCS064.pdf` (all 7 experiments).
-- Computer Networks: `Computer Networks/Lab/CN Lab File - 24BCS064.pdf` (all 8 experiments from the practical index, Python, hibiscus character-art cover; a light printer-friendly cover is beside it). Programs are in `Computer Networks/Lab/programs/`; all were actually run, and the screenshots are their real output. Submitted to Prof. Hannan Mansoor. Rebuild with `python tools/cnlab/run_all.py` then `python tools/cnlab/build.py`.
+- Computer Networks: `Computer Networks/Lab/CN Lab File - 24BCS064.pdf` (all 8 experiments from the practical index, Python, hibiscus character-art cover on a white page). Programs are in `Computer Networks/Lab/programs/`; all were actually run, and the screenshots are their real output. Submitted to Prof. Hannan Mansoor. Rebuild with `python tools/cnlab/run_all.py` then `python tools/cnlab/build.py`.
 - OOP, Microprocessor: no index for this year's experiments in any folder; only old-batch material in each `Lab` folder.
 - [Binary to Decimal lab record (8085)](https://claude.ai/artifact/84XZAzrgmgkE4j8ZNa1fra): run it on the kit once to confirm.
 

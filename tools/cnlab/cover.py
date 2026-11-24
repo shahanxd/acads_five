@@ -6,7 +6,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 LOGO = HERE / 'jmi_logo.jpeg'
 
 THEMES = {
-    'light': dict(bg='#fffdfa', uni='#6b6b6b', accent='#9a1b3c', title='#8c0f2f', text='#222', sub='#555',
+    'light': dict(bg='#ffffff', uni='#6b6b6b', accent='#9a1b3c', title='#8c0f2f', text='#222', sub='#555',
                   frame='#ecc4cb', rule='#e2c8cd'),
     'dark': dict(bg='#0f0b10', uni='#b9a9ad', accent='#ff7a93', title='#ffd9df', text='#f4eef0', sub='#c9bcc0',
                  frame='#4a1d2a', rule='#3a2a30'),
