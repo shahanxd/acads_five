@@ -23,7 +23,8 @@ Each subject folder has an **`Endsem RUN`** folder with:
 
 ## Deadlines
 
-None pending that we know of. (CSC-504 Assignment 1 was due 6 Nov.)
+- **CSC-504 (SE) sessional make-up, Wednesday 25 Nov, 10:00–11:30.** Faisal sir's notice (23 Nov, SE Classroom) attaches the Sessional 1 and 2 marks. **Mandatory** if you missed either sessional: submit solutions to all Sessional 1 and 2 questions, plus all built-in exercises from Software Testing Part 2 and Unit 5 (Maintenance). **Optional** if you scored under 4 in either. A **viva** on the Sessional 2 syllabus follows. Check your row in `CSC_504_Sessional 1 and 2 Marks.pdf` (handwritten scan, couldn't be read reliably by computer).
+- Classroom To-do is otherwise empty (checked 24 Nov).
 
 ## Missing on Classroom (all closed, "Not accepting work")
 
@@ -48,6 +49,6 @@ Flagged paper errors: CN 2025 Q4(a) options misprinted; CN 2025 Q2(b) has no enc
 
 ## Missing material
 
-- Software Testing Part 2 slides and SE Unit 5 slides exist only on Drive (shared by Dr. Faisal Malik), not in `Software Engineering/Notes`
-- Data Mining Units 1 and 2 slides (sir's versions) are not downloaded yet; Units 1–2 docs use the CSDS slides and Han & Kamber
-- Classroom has nothing for OOP theory, Microprocessor theory or Automata, and no Computer Networks notes
+- Software Testing Part 2 slides and SE Unit 5 slides exist only on Drive/Classroom (shared by Dr. Faisal Malik), not in `Software Engineering/Notes`
+- Data Mining Units 1 and 2 slides (Hannan sir's, on the IDM Classroom) aren't downloaded, but the Unit 1 and 2 docs were checked against them on 24 Nov (attribute types, χ² and covariance examples, binary dissimilarity, sampling added to Unit 1)
+- Classroom (checked 24 Nov) has nothing for OOP theory, Microprocessor theory or Automata, and only one assignment for Computer Networks

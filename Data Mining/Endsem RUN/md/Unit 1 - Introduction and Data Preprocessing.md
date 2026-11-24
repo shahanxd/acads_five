@@ -119,7 +119,21 @@ Techniques overview: statistics, machine learning (supervised and unsupervised),
 
 ---
 
-## 4. Describing data: central tendency and dispersion · Quick
+## 4. Describing data: attribute types, central tendency and dispersion · Quick
+
+**Attribute types.** An attribute is one column of the data (a feature, variable, dimension): one property of each object, like age or occupation. Its type decides which maths makes sense on it. Think of a hospital record:
+
+| Type | What it means | Example | Valid "centre" |
+| --- | --- | --- | --- |
+| **Nominal** (categorical) | Names or labels, no order; numbers used as codes mean nothing | occupation, hair colour, PIN code | mode |
+| **Binary** | Nominal with only 2 states (0/1). **Symmetric:** both states equally important (gender). **Asymmetric:** one state matters more; code the rarer, important one as 1 (disease test positive) | smoker yes/no | mode |
+| **Ordinal** | Values have a meaningful order, but the gaps between them are unknown | drink size S/M/L, grade A/B/C, ratings | median, mode |
+| **Numeric: interval-scaled** | Equal-size units, can be negative, **no true zero**, so differences make sense but ratios don't | temperature in °C, calendar year | mean, median, mode |
+| **Numeric: ratio-scaled** | Has a **true zero**, so "twice as much" makes sense | height, salary, years of experience, Kelvin | mean, median, mode |
+
+Another split: **discrete** (finite or countable values, like PIN code or number of children) vs **continuous** (real numbers, like height).
+
+**Exam line:** *Attributes are nominal (unordered categories), binary (two states; symmetric or asymmetric), ordinal (ordered, unknown gaps) or numeric (interval-scaled without a true zero, ratio-scaled with one); they can also be classed as discrete or continuous.*
 
 **Central tendency** = the "middle" of the data:
 
@@ -127,6 +141,7 @@ Techniques overview: statistics, machine learning (supervised and unsupervised),
 - **Median:** the middle value of the sorted data (robust to outliers).
 - **Mode:** the most frequent value. Data can be unimodal, bimodal, multimodal.
 - **Midrange** = (min + max) / 2.
+- **Empirical relation** (moderately skewed data): mean − mode ≈ 3 × (mean − median). In **symmetric** data mean = median = mode; in **positively skewed** data mode < median < mean; in **negatively skewed** data mean < median < mode.
 
 **Dispersion** = how spread out:
 
@@ -152,7 +167,7 @@ Techniques overview: statistics, machine learning (supervised and unsupervised),
 - **Inconsistent:** different codes or formats (DOB as 03/04/05; "M" vs "Male").
 - **Redundant / huge:** duplicates and irrelevant attributes, too big to mine quickly.
 
-"Garbage in, garbage out": mining dirty data gives misleading patterns, and models learn the noise. Preprocessing improves **accuracy, completeness, consistency, timeliness and interpretability**, and makes mining faster.
+"Garbage in, garbage out": mining dirty data gives misleading patterns, and models learn the noise. Preprocessing improves the six **measures of data quality**: **accuracy, completeness, consistency, timeliness, believability and interpretability**, and makes mining faster.
 
 **The four major steps:**
 
@@ -160,6 +175,7 @@ Techniques overview: statistics, machine learning (supervised and unsupervised),
 
 - *Missing values:* ignore the tuple; fill manually; use a global constant ("Unknown"); fill with the attribute **mean/median**; mean of the **same class**; or the **most probable value** (regression, decision tree, Bayesian inference).
 - *Noise:* **binning** (sort, split into bins, smooth by bin means, medians or boundaries), **regression** (fit a function), **clustering** (values outside clusters are outliers).
+- *Cleaning as a process:* first **discrepancy detection** (use metadata: domain, range, uniqueness and null rules), then fix with **data scrubbing** tools (domain knowledge like postal codes, spell-check) and **data auditing** tools (find rules and flag violators), and **ETL** tools for the transformations.
 
 **2. Data integration:** merge data from several sources into one store.
 
@@ -176,8 +192,10 @@ Techniques overview: statistics, machine learning (supervised and unsupervised),
 **4. Data reduction:** get a much smaller dataset that gives (almost) the same mining results.
 
 - **Dimensionality reduction:** remove attributes: **PCA**, wavelet transforms, **attribute subset (feature) selection** (forward selection, backward elimination, decision-tree induction).
-- **Numerosity reduction:** replace data with smaller representations: regression models, histograms, clustering, **sampling**.
-- **Data compression** (lossless or lossy); **data cube aggregation**.
+- **Numerosity reduction:** replace data with smaller representations: regression models, histograms (equal-width or equal-frequency buckets), clustering, **sampling**. Sampling types: **SRSWOR** (simple random sample without replacement: a picked tuple can't be picked again), **SRSWR** (with replacement), **cluster sample** (pick whole groups, such as disk pages), **stratified sample** (split into strata, such as age groups, and sample each in proportion; good for skewed data).
+- **Data compression** (lossless or lossy); **data cube aggregation** (store summaries like yearly sales per branch instead of every sale).
+
+**Discretisation** (part of transformation) splits a continuous attribute into intervals with labels (age → 0–20, 21–40, …): by binning, histogram analysis, clustering, decision trees (supervised), or χ²-based merging.
 
 **Preprocessing = cleaning (missing values, noise) + integration (schema, redundancy, conflicts) + transformation (smoothing, aggregation, generalisation, normalisation) + reduction (PCA, feature selection, sampling).**
 
@@ -210,6 +228,31 @@ r_{A,B} = \frac{\sum (a_i - \bar{A})(b_i - \bar{B})}{n\,\sigma_A \sigma_B}
 
 r > 0: positively correlated (one may be redundant); r = 0: no linear correlation; r < 0: negatively correlated. Correlation does not mean causation.
 
+**χ² test** (nominal data, sir's example). 1500 people; do "likes science fiction" and "plays chess" go together? Expected count = (row total × column total) / N, shown in brackets:
+
+| | Plays chess | Doesn't | Total |
+| --- | --- | --- | --- |
+| Likes sci-fi | 250 (90) | 200 (360) | 450 |
+| Doesn't | 50 (210) | 1000 (840) | 1050 |
+| Total | 300 | 1200 | 1500 |
+
+```latex
+\chi^2 = \sum \frac{(O - E)^2}{E} = \frac{160^2}{90} + \frac{160^2}{360} + \frac{160^2}{210} + \frac{160^2}{840} = 284.44 + 71.11 + 121.90 + 30.48 = 507.93
+```
+
+Degrees of freedom = (2 − 1)(2 − 1) = 1; the 0.001-level table value is 10.83. Since 507.93 ≫ 10.83, reject independence: **the two attributes are strongly correlated**. (A slide copy shows 93.507; the arithmetic gives 507.93, as in Han's textbook.)
+
+**Covariance** (numeric data): $\text{Cov}(A,B) = E(A \cdot B) - \bar{A}\,\bar{B}$. Two stocks over a week: A = (2, 3, 5, 4, 6), B = (5, 8, 10, 11, 14).
+
+```latex
+\begin{aligned}
+\bar{A} &= 20/5 = 4, \quad \bar{B} = 48/5 = 9.6 \\
+\text{Cov}(A,B) &= \tfrac{2\cdot5 + 3\cdot8 + 5\cdot10 + 4\cdot11 + 6\cdot14}{5} - 4 \times 9.6 = \tfrac{212}{5} - 38.4 = 4
+\end{aligned}
+```
+
+Cov > 0, so the two stocks **rise together**. (Cov < 0: one rises as the other falls. Cov = 0 does not by itself prove independence.) Correlation is just covariance scaled: $r = \text{Cov}(A,B) / (\sigma_A \sigma_B)$.
+
 ---
 
 ## 6. Distance measures · Slow down
@@ -223,7 +266,30 @@ Many methods (k-NN, clustering) need "how different are two objects?". For numer
 | **Minkowski** | $\left(\sum \lvert x_i - y_i \rvert^h\right)^{1/h}$ | h = 1 Manhattan, h = 2 Euclidean |
 | **Supremum (Chebyshev)** | $\max_i \lvert x_i - y_i \rvert$ | h → ∞: the single biggest difference |
 
-For nominal attributes: dissimilarity = (attributes that don't match) / (total attributes). For binary: simple matching or Jaccard (ignores 0–0 matches).
+For nominal attributes: dissimilarity $d = (p - m)/p$, where m = number of matches and p = total attributes.
+
+For binary attributes, count over the two objects: q = both 1, r = first 1 and second 0, s = first 0 and second 1, t = both 0.
+
+- **Symmetric** binary: $d = \frac{r + s}{q + r + s + t}$.
+- **Asymmetric** binary: $d = \frac{r + s}{q + r + s}$ (drop t: two patients both *not* having a symptom says little). The similarity $\frac{q}{q + r + s}$ is the **Jaccard coefficient**.
+
+**Worked example (sir's slide).** Gender is symmetric, so leave it out; the other six are asymmetric, with Y/P = 1 and N = 0:
+
+| Name | Fever | Cough | Test-1 | Test-2 | Test-3 | Test-4 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Jack | 1 | 0 | 1 | 0 | 0 | 0 |
+| Mary | 1 | 0 | 1 | 0 | 1 | 0 |
+| Jim | 1 | 1 | 0 | 0 | 0 | 0 |
+
+```latex
+\begin{aligned}
+d(\text{Jack}, \text{Mary}) &= \tfrac{0 + 1}{2 + 0 + 1} = 0.33 \\
+d(\text{Jack}, \text{Jim}) &= \tfrac{1 + 1}{1 + 1 + 1} = 0.67 \\
+d(\text{Jim}, \text{Mary}) &= \tfrac{1 + 2}{1 + 1 + 2} = 0.75
+\end{aligned}
+```
+
+Jim and Mary are the least alike (least likely to have the same illness); Jack and Mary are the most alike.
 
 > **Endsem 2025 · Q2(a)(i) · 2 marks**
 > Given two objects (22, 1, 42, 10) and (20, 0, 36, 8), compute the Euclidean distance and the Manhattan distance between them.
@@ -376,8 +442,9 @@ A **data warehouse** is a subject-oriented, integrated, time-variant, non-volati
 - KDD: clean → integrate → select → transform → **mine** → evaluate → present.
 - Architecture: sources → DB/warehouse server → engine + knowledge base → pattern evaluation → GUI.
 - Functionalities: characterisation, discrimination, association, classification, prediction, clustering, outliers, evolution.
-- Preprocessing: cleaning (missing, noise via binning), integration (redundancy via correlation), transformation (min-max, z-score, decimal scaling), reduction (PCA, feature selection, sampling).
-- Euclidean √Σd², Manhattan Σ|d|, Minkowski, supremum.
+- Attribute types: nominal, binary (symmetric / asymmetric), ordinal, numeric (interval: no true zero; ratio: true zero).
+- Preprocessing: cleaning (missing, noise via binning), integration (redundancy via χ², correlation, covariance), transformation (min-max, z-score, decimal scaling, discretisation), reduction (PCA, feature selection, sampling: SRSWOR, SRSWR, cluster, stratified).
+- Euclidean √Σd², Manhattan Σ|d|, Minkowski, supremum. Asymmetric binary d = (r + s)/(q + r + s).
 - Curse of dimensionality: sparse data, equal-looking distances. Overfitting memorises noise; underfitting is too simple.
 - PCA: centre → covariance → eigenvalues/vectors → keep the top components.
 - Star (denormalised, fast, redundant) vs snowflake (normalised, compact, more joins).
