@@ -36,7 +36,8 @@ def cover(theme='dark', cols=230, rows=None, art_w=184):
   <pre class="art">{art}</pre>
   <div class="cv-bot">
     <div class="who">
-      <div><div class="h">submitted to</div><div class="nm">&nbsp;</div><div class="line"></div></div>
+      <div><div class="h">submitted to</div><div class="nm">Prof. Hannan Mansoor</div>
+        <div class="roll">&nbsp;</div></div>
       <div class="r"><div class="h">submitted by</div><div class="nm">Mohd Shahan Shah Ayyubi</div>
         <div class="roll">24BCS064</div></div>
     </div>
