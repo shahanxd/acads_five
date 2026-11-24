@@ -16,7 +16,7 @@ for f in sorted(md_dir.glob('Unit *.md')):
     lines = f.read_text(encoding='utf-8').splitlines()
     i = 0
     while i < len(lines):
-        m = re.match(r'> \*\*Endsem 2025 · Q(\d+)(?:\(([a-z]+)\))?', lines[i])
+        m = re.match(r"> \*\*Endsem 2025 · Q(\d+)((?:\([a-z0-9']+\))*)", lines[i])
         if not m:
             i += 1; continue
         j = i + 1
@@ -28,7 +28,7 @@ for f in sorted(md_dir.glob('Unit *.md')):
         items.append((int(m.group(1)), m.group(2) or '', block, unit))
         i = j
 
-items.sort(key=lambda t: (t[0], t[1]))
+items.sort(key=lambda t: (t[0], t[1].replace("'", '~')))
 out = [f'# {title}', '', paper, '',
        'Every question of the 2025 endsem paper, solved. The same answers sit inside the unit docs at the topic they belong to; '
        'the unit is named under each question so you can jump there for the explanation.', '']
